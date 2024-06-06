@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+@media screen and (max-width: 600px){
+    .josefin-sans-h1 {
+        font-size: 3.5rem !important;
+    }
+    
+}
+
+@media screen and (max-width: 400px){
+    .josefin-sans-h1 {
+        font-size: 2.8rem !important;
+    }
+    
+}
+
+
+.josefin-sans {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.josefin-sans-h1 {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 6rem;
+    font-weight: 800;
+    font-style: normal;
+}
+.josefin-sans-h2 {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+.josefin-sans-h3 {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+.josefin-sans-h4 {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+.josefin-sans-h5 {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+.josefin-sans-h6 {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 20px;
+}
+.josefin-sans-p {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.nvm-primary-background {
+    background-color: #31537c;
+}
+.nvm-primary-color {
+    color: #31537c;
+}
+.nvm-white-background {
+    background-color: #ffffff;
+}
+.nvm-white-color {
+    color: #ffffff;
+}
+
+
+.background {
+  background-color: #31537c;
+  background-size: auto;
+}
+.input-card-height {
+  min-height: 35vh
+}
+
+#weatherReportSection {
+  min-height: 75vh;
+}
+
+#carouselExample {
+  height: 35vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+#weatherReportCard {
+min-height: 300px;
+width: 80%;
+}
+

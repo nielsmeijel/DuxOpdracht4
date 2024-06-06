@@ -1,2 +1,0 @@
-# DuxOpdracht4
- WeatherApp

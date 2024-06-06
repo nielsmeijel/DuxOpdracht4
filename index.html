@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="index.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="background">
+      <div id="everythingContainer" class="container">
+        <div class="row" >
+          <div class="col-12">
+            <h1 class="text-left josefin-sans-h1 nvm-white-color">WeatherApp</h1>
+            <h4 class="text-left josefin-sans-h4 px-3 nvm-white-color">Get the weather for your location</h4>
+            <!-- interactive card to compile a list of locations -->
+            <div class="card shadow input-card-height">
+              <div class="card-body">
+                <h3 class="card-title josefin-sans-h3">Search Locations</h3>
+                <!-- Row so i can make two columns -->
+                <div class="row"> 
+                  <div class="col-sm-12 col-md-6">
+                    <div class="container mt-5">
+                      <p class="card-text josefin-sans-p">Make a list of 3 cities or locations</p>
+                      <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect nvm-primary-color">Number of locations</label>
+                        <select class="form-select" id="inputGroupSelect">
+                          <option selected>Choose...</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 ">
+                    <div class="container mt-5">
+                      <div id="locationField1" class="d-flex d-none align-items-center my-2">
+                        <i class="bi bi-1-square-fill fs-1 me-2 nvm-primary-color"></i>
+                        <!-- <span id="textDisp" class="border border-primary">This is a 20chr</span> -->
+                        <input id="textInput1" type="text" class="form-control no-outline" placeholder="Enter City Name" aria-label="Text input with icon" aria-describedby="icon-addon">
+                        <button id="editButton" onclick="editText('textInput1')" class="btn mx-2 nvm-primary-background">
+                            <i class="bi bi-pencil-fill nvm-white-color"></i>
+                        </button>
+                        <button id="cancelButton" onclick="deleteText('textInput1')" class="btn nvm-primary-background">
+                            <i class="bi bi-trash3-fill nvm-white-color"></i>
+                        </button>
+                      </div>
+                      <div id="locationField2" class="d-flex d-none align-items-center my-2">
+                        <i class="bi bi-2-square-fill fs-1 me-2 nvm-primary-color"></i>
+                        <!-- <span id="textDisp" class="border border-primary">This is a 20chr</span> -->
+                        <input id="textInput2" type="text" class="form-control no-outline" placeholder="Enter City Name" aria-label="Text input with icon" aria-describedby="icon-addon">
+                        <button id="editButton" onclick="editText('textInput2')" class="btn mx-2 nvm-primary-background">
+                            <i class="bi bi-pencil-fill nvm-white-color"></i>
+                        </button>
+                        <button id="cancelButton" onclick="deleteText('textInput2')" class="btn nvm-primary-background">
+                            <i class="bi bi-trash3-fill nvm-white-color"></i>
+                        </button>
+                      </div>
+                      <div id="locationField3" class="d-flex d-none align-items-center my-2">
+                        <i class="bi bi-3-square-fill fs-1 me-2 nvm-primary-color"></i>
+                        <!-- <span id="textDisp" class="border border-primary">This is a 20chr</span> -->
+                        <input id="textInput3" type="text" class="form-control no-outline" placeholder="Enter City Name" aria-label="Text input with icon" aria-describedby="icon-addon">
+                        <button id="editButton" onclick="editText('textInput3')" class="btn mx-2 nvm-primary-background">
+                            <i class="bi bi-pencil-fill nvm-white-color"></i>
+                        </button>
+                        <button id="cancelButton" onclick="deleteText('textInput3')" class="btn nvm-primary-background">
+                            <i class="bi bi-trash3-fill nvm-white-color"></i>
+                        </button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>                 
+              </div>
+            </div>
+            <!-- top card ends above -->
+
+            <!-- button to make call -->
+            <div class="container d-flex justify-content-center align-items-center py-4">
+              <button id="makeApiCall" onclick="makeSavedList()" class="btn nvm-white-background">
+                <i class="bi bi-lightning-charge-fill nvm-primary-color"></i>Generate Weather Report
+              </button>
+            </div>
+            <!------------------------------------- WEATHER REPORT SECTION --------------------------------------->
+            <div id="weatherReportSection" class="container">
+              <!-- Crousel -->
+              <div id="carouselExample" class="carousel slide" data-ride="carousel">
+                <!-- buttons below not working (number of buttons needs to be dynamic or not there) -->
+                <!-- <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
+                </div> --> 
+                <!-- buttons at the bottom removed, fix: make them work like the prev and next buttons actually... always staying in the middle.   -->
+                
+                <!-- CAROUSEL ITEMS -->
+                <div class="container">
+                    <!--    carousel start -->
+                    <div class="carousel-inner" id="carousel-inner">
+                        <div id="weatherDash"></div>
+                    </div>
+                </div>
+                <!-- SIDE BTN -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              <div>
+            </div>
+          <!-- cik 12 end -->
+          </div>
+        <!-- rowend -->
+        </div>
+      </div> <!--everything container-->
+    </div> <!--background div-->
+
+    <template id="weather-report-display" class=" carousel-item templateWeather">
+      <!--<div class="row weather-report justify-content-end">  queryselector with attribute data-location. validation of two the same returned dashboards -->
+          <div class="weather-report d-flex justify-content-center" >   <!-- col-12 -->
+              <div id="weatherReportCard" class="card shadow">
+                  <div class="card-body josefin-sans template-card-height">
+                      <div class="container d-flex align-items-center">
+                          <img class="fas fa-sun condition-icon mx-3" src=""></img>  <!--queryselector-->
+                          <h3 class="card-title cityName josefin-sans-h3">CITYNAME</h3> <!-- queryselector-->
+                      </div>
+                      <div class="row">
+                          <div class=" col-sm-12 col-md-8">
+                              <div class="row">
+                                  <div class="col-4">
+                                      <h6 class="josefin-sans-h6">Temperature</h6>
+                                      <p class="temperature josefin-sans-p">XX°C</p> <!-- queryselector-->
+                                  </div>
+                                  <div class="col-4">
+                                      <h6 class="josefin-sans-h6">Humidity</h6>
+                                      <p class="humidity josefin-sans-p">XX%</p> <!-- queryselector-->
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-4">
+                                      <h6 class="josefin-sans-h6">Wind Speed</h6>
+                                      <p class="windSpeed josefin-sans-p">XX km/h</p> <!-- queryselector hier -->
+                                  </div>
+                                  <div class="col-4">
+                                      <h6 class="josefin-sans-h6">Pressure</h6>
+                                      <p class="pressure josefin-sans-p">XX hPa</p> <!-- queryselector-->
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-4">
+                                      <h6 class="josefin-sans-h6">Cloud cover</h6>
+                                      <p class="cloudCover josefin-sans-p">XX km</p> <!-- queryselector-->
+                                  </div>
+                                  <div class="col-4">
+                                      <h6 class="josefin-sans-h6">Precipitation</h6>
+                                      <p class="precipitation josefin-sans-p">XX mm</p> <!-- queryselector-->
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      <!--</div>-->
+    </template>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.min.js",
+          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.esm.min.js"
+        }
+      }
+    </script>
+    <script type="module">
+        import * as bootstrap from 'bootstrap'
+  
+        new bootstrap.Popover(document.getElementById('popoverButton'))
+    </script>
+    <script src="index.js"></script>
+  </body>
+</html>
